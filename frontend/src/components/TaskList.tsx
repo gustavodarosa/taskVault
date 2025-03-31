@@ -41,26 +41,30 @@ const TaskList: React.FC = () => {
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md">
       <h1 className="text-2xl font-bold mb-4 text-gray-800">Lista de Tarefas</h1>
-      {loading && <div className="text-blue-500">Carregando...</div>}
+      {loading && (
+  <div className="flex justify-center">
+    <div className="spinner"></div>
+  </div>
+)}
       {error && <div className="text-red-500">{error}</div>}
       <ul className="space-y-4">
         {tasks.map((task) => (
           <li
-            key={task.id}
-            className="p-4 border border-gray-300 rounded flex justify-between items-center"
+          key={task.id}
+          className="p-4 border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex justify-between items-center"
+        >
+          <div>
+            <strong className="text-gray-800">{task.title}</strong>
+            <p className="text-gray-600">{task.description}</p>
+            <p className="text-sm text-gray-500">Vence em: {task.dueDate}</p>
+          </div>
+          <button
+            onClick={() => handleDelete(task.id)}
+            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-all duration-300"
           >
-            <div>
-              <strong className="text-gray-800">{task.title}</strong>
-              <p className="text-gray-600">{task.description}</p>
-              <p className="text-sm text-gray-500">Vence em: {task.dueDate}</p>
-            </div>
-            <button
-              onClick={() => handleDelete(task.id)}
-              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-            >
-              Excluir
-            </button>
-          </li>
+            Excluir
+          </button>
+        </li>
         ))}
       </ul>
     </div>

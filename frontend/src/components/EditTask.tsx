@@ -44,7 +44,23 @@ const EditTask: React.FC = () => {
   return (
     <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
       <h1 className="text-2xl font-bold mb-4 text-gray-800">Editar Tarefa</h1>
-      {error && <div className="text-red-500">{error}</div>}
+      {error && (
+  <div className="flex items-center text-red-500 bg-red-100 p-2 rounded">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5 mr-2"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M18 10A8 8 0 11.293 3.293a1 1 0 011.414 1.414A6 6 0 1016 10a1 1 0 112 0z"
+        clipRule="evenodd"
+      />
+    </svg>
+    {error}
+  </div>
+)}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-gray-700 font-medium">Título:</label>

@@ -65,7 +65,7 @@ const AddTask: React.FC = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 disabled:opacity-50"
+          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 disabled:opacity-50 transition-all duration-300 focus:ring-2 focus:ring-blue-300"
         >
           {loading ? 'Adicionando...' : 'Adicionar Tarefa'}
         </button>

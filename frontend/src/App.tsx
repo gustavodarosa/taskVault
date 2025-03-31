@@ -1,32 +1,36 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Home from './components/Home';
+import TaskList from './components/TaskList';
+import AddTask from './components/AddTask';
+import EditTask from './components/EditTask';
+import Login from './components/Login';
+import Register from './components/Register';
 
-const App: React.FC = () => {
+const AppRoutes: React.FC = () => {
+  const isAuthenticated = !!localStorage.getItem('authToken'); // Verifica se o usuário está autenticado
+
   return (
-    
-    <div className="max-w-5xl mx-auto p-8 text-center">
-      <div className="bg-red-500 text-white p-4">
-  Testando Tailwind CSS
-      </div>
-      <header className="mb-8">
-        <img
-          src="/vite.svg"
-          className="mx-auto h-24 transition-transform duration-300 hover:scale-110"
-          alt="Vite logo"
-        />
-        <h1 className="text-4xl font-bold text-gray-800 mt-4">
-          Bem-vindo ao TaskVault
-        </h1>
-      </header>
-      <main>
-        <p className="text-lg text-gray-600">
-          Gerencie suas tarefas de forma simples e eficiente.
-        </p>
-        <button className="mt-6 px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600">
-          Começar
-        </button>
-      </main>
-    </div>
+    <Router>
+      <Routes>
+        {/* Rotas públicas */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* Rotas protegidas */}
+        {isAuthenticated ? (
+          <>
+            <Route path="/" element={<Home />} />
+            <Route path="/tasks" element={<TaskList />} />
+            <Route path="/tasks/add" element={<AddTask />} />
+            <Route path="/tasks/edit/:id" element={<EditTask />} />
+          </>
+        ) : (
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        )}
+      </Routes>
+    </Router>
   );
 };
 
-export default App;
+export default AppRoutes;

@@ -102,8 +102,8 @@ tests/                # Testes unitários e de integração
 ✅ Criar os componentes principais (Lista, Adicionar, Editar, Excluir Tarefas)
 ✅ Conectar o frontend à API (fetch/axios)
 ✅ Implementar estados com React (useState, useEffect)
-* Criar feedbacks visuais (mensagens de erro/sucesso, loading)
-* Implementar estilização (CSS/Tailwind/Styled Components)
+✅ Criar feedbacks visuais (mensagens de erro/sucesso, loading)
+✅ Implementar estilização (CSS/Tailwind/Styled Components)
 
 ###  Melhorias Futuras no Frontend
 
