@@ -33,7 +33,7 @@ Task.init(
   },
   {
     sequelize,
-    tableName: 'tasks',  // Nome da tabela no banco de dados
+    tableName: 'taskvault',  // Nome da tabela no banco de dados
   }
 );
 

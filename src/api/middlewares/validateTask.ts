@@ -7,10 +7,11 @@ const taskSchema = Joi.object({
   dueDate: Joi.date().optional(),
 });
 
-export const validateTask = (req: Request, res: Response, next: NextFunction) => {
+export const validateTask = (req: Request, res: Response, next: NextFunction): void => {
   const { error } = taskSchema.validate(req.body);
   if (error) {
-    return res.status(400).json({ message: 'Dados inválidos', details: error.details });
+    res.status(400).json({ message: 'Dados inválidos', details: error.details });
+    return; // Encerra a execução
   }
-  next();
+  next(); // Continua para o próximo middleware ou handler
 };
