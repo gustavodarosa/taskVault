@@ -97,12 +97,12 @@ tests/                # Testes unitários e de integração
 
 ###  Frontend (Em Desenvolvimento)
 
-* Criar um projeto React com Vite
-* Configurar React Router para navegação
-* Criar os componentes principais (Lista, Adicionar, Editar, Excluir Tarefas)
-* Conectar o frontend à API (fetch/axios)
-* Implementar estados com React (useState, useEffect)
-* Criar feedbacks visuais (mensagens de erro/sucesso, loading)
+✅ Criar um projeto React com Vite
+✅ Configurar React Router para navegação
+✅ Criar os componentes principais (Lista, Adicionar, Editar, Excluir Tarefas)
+✅ Conectar o frontend à API (fetch/axios)
+✅ Implementar estados com React (useState, useEffect)
+✅ Criar feedbacks visuais (mensagens de erro/sucesso, loading)
 * Implementar estilização (CSS/Tailwind/Styled Components)
 
 ###  Melhorias Futuras no Frontend
