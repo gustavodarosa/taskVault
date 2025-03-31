@@ -22,7 +22,7 @@ O **TaskVault** é uma aplicação para gerenciamento de tarefas, desenvolvida c
     ✅ Criar middleware de validação de dados com Joi
     ✅ Criar middleware global de tratamento de erros
 * 4. Melhorias no Projeto
-    * Implementar logs com Winston
+    ✅ Implementar logs com Winston
     * Configurar variáveis de ambiente com dotenv
 * 5. Testes e Qualidade
     * Criar testes unitários para os controladores com Jest
