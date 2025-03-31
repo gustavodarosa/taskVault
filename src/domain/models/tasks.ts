@@ -1,5 +1,5 @@
-import { Model, DataTypes } from 'sequelize';
-import sequelize from '../../config/database';  // Importando a conexão com o banco
+import { Model, DataTypes } from "sequelize";
+import sequelize from "../../config/database";  // Importando a conexão com o banco
 
 class Task extends Model {
   public id!: number;
@@ -33,7 +33,7 @@ Task.init(
   },
   {
     sequelize,
-    tableName: 'taskvault',  // Nome da tabela no banco de dados
+    tableName: "taskvault",  // Nome da tabela no banco de dados
   }
 );
 

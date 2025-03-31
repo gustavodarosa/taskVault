@@ -1,5 +1,5 @@
-import express from 'express';
-import taskRoutes from './api/routes/taskRoutes';
+import express from "express";
+import taskRoutes from "./api/routes/taskRoutes";
 
 const app = express();
 
@@ -7,6 +7,6 @@ const app = express();
 app.use(express.json()); // Para entender o corpo da requisição no formato JSON
 
 // Rotas
-app.use('/api', taskRoutes);
+app.use("/api", taskRoutes);
 
 export default app;

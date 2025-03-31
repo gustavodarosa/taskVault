@@ -1,9 +1,13 @@
-import { Sequelize } from 'sequelize';
+import { Sequelize } from "sequelize";
 
-// Configuração do Sequelize para conectar ao MySQL
-const sequelize = new Sequelize('TASKVAULT', 'root', 'root', {
-  host: 'localhost',
-  dialect: 'mysql',
-});
+const sequelize = new Sequelize(
+  process.env.DB_NAME || "TASKVAULT",
+  process.env.DB_USER || "root",
+  process.env.DB_PASSWORD || "root",
+  {
+    host: process.env.DB_HOST || "localhost",
+    dialect: "mysql",
+  }
+);
 
 export default sequelize;

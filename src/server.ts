@@ -1,10 +1,14 @@
-import sequelize from './config/database';
-import './api/controllers/taskController';  // Apenas para garantir que o Sequelize seja sincronizado
-import './config/server';  // Inicializa o servidor Express
+import sequelize from "./config/database";
+import app from "./app";  // Importando o servidor Express
 
 // Sincronizando o banco de dados
-sequelize.sync({ force: true }).then(() => {
-  console.log('Banco de dados sincronizado');
+sequelize.sync().then(() => {  
+  console.log("Banco de dados sincronizado");
+  // Inicializando o servidor Express após a sincronização
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port}`);
+  });
 }).catch((error) => {
-  console.error('Erro ao sincronizar o banco de dados:', error);
+  console.error("Erro ao sincronizar o banco de dados:", error);
 });

@@ -1,12 +1,12 @@
 module.exports = {
-  testEnvironment: 'node',
+  testEnvironment: "node",
   transform: {
-    '^.+\\.ts$': 'ts-jest',
+    "^.+\\.ts$": "ts-jest",
   },
-  moduleFileExtensions: ['ts', 'js', 'json', 'node'],
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.ts$',
+  moduleFileExtensions: ["ts", "js", "json", "node"],
+  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$",
   collectCoverage: true,
-  coverageDirectory: 'coverage',
-  coverageProvider: 'v8',
-  roots: ['<rootDir>/src'],
+  coverageDirectory: "coverage",
+  coverageProvider: "v8",
+  roots: ["<rootDir>/src"],
 };
