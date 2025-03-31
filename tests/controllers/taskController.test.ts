@@ -1,6 +1,6 @@
 import request from 'supertest';
-import app from '../../src/app';
-import Task from '../../src/domain/models/tasks';
+import app from '../../backend/src/app';
+import Task from '../../backend/src/domain/models/tasks';
 
 jest.mock('../../src/domain/models/tasks'); // Mock do modelo Task
 
