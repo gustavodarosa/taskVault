@@ -1,5 +1,6 @@
 import express from "express";
 import taskRoutes from "./api/routes/taskRoutes";
+import { errorHandler } from './api/middlewares/errorHandler';
 
 const app = express();
 
@@ -8,5 +9,7 @@ app.use(express.json()); // Para entender o corpo da requisição no formato JSO
 
 // Rotas
 app.use("/api", taskRoutes);
+
+app.use(errorHandler);
 
 export default app;
