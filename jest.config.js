@@ -1,12 +1,7 @@
 module.exports = {
-  testEnvironment: "node",
+  testEnvironment: 'node', // Define o ambiente de teste como Node.js
+  testMatch: ['**/*.test.ts'], // Padrão para encontrar arquivos de teste
   transform: {
-    "^.+\\.ts$": "ts-jest",
+    '^.+\\.ts$': 'ts-jest', // Usa ts-jest para transformar arquivos TypeScript
   },
-  moduleFileExtensions: ["ts", "js", "json", "node"],
-  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$",
-  collectCoverage: true,
-  coverageDirectory: "coverage",
-  coverageProvider: "v8",
-  roots: ["<rootDir>/src"],
 };

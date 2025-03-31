@@ -25,7 +25,7 @@ O **TaskVault** é uma aplicação para gerenciamento de tarefas, desenvolvida c
     ✅ Implementar logs com Winston
     ✅ Configurar variáveis de ambiente com dotenv
 * 5. Testes e Qualidade
-    * Criar testes unitários para os controladores com Jest
+    ✅ Criar testes unitários para os controladores com Jest
     * Configurar ESLint e Prettier para padronização do código
 * 6. Infraestrutura e Deploy
     * Criar um Dockerfile para rodar a API
