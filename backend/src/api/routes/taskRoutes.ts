@@ -1,14 +1,15 @@
 import express from "express";
 import TaskController from "../controllers/taskController";
 import { validateTask } from "../middlewares/validateTask";
+import { authenticateToken } from "../middlewares/authMiddleware"; // Importa o middleware de autenticação
 
 const router = express.Router();
 
-router.post("/tasks", validateTask, TaskController.create);
-router.put("/tasks/:id", validateTask, TaskController.update);
-router.get("/tasks", TaskController.getAll);
-router.get("/tasks/:id", TaskController.getOne);
-router.delete("/tasks/:id", TaskController.delete);
+router.post('/tasks', authenticateToken, validateTask, TaskController.create);
+router.put('/tasks/:id', authenticateToken, validateTask, TaskController.update);
+router.get('/tasks', authenticateToken, TaskController.getAll);
+router.get('/tasks/:id', authenticateToken, TaskController.getOne);
+router.delete('/tasks/:id', authenticateToken, TaskController.delete);
 
 // Rota para testar o logger Winston
 router.get('/test-error', (req, res, next) => {
