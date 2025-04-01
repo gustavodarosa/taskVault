@@ -104,11 +104,11 @@ tests/                # Testes unitários e de integração
 ✅ Implementar estados com React (useState, useEffect)
 ✅ Criar feedbacks visuais (mensagens de erro/sucesso, loading)
 ✅ Implementar estilização (CSS/Tailwind/Styled Components)
+✅ Criar um sistema de autenticação para usuários
 
 ###  Melhorias Futuras no Frontend
 
 * Melhorar experiência do usuário (UX/UI)
-* Criar um sistema de autenticação para usuários
 * Adicionar testes para garantir qualidade do código
 * Implementar deploy para publicação online
 
