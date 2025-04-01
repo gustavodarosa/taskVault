@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { register } from '../services/api';
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -18,11 +19,10 @@ const Register: React.FC = () => {
     }
 
     try {
-      // Simulação de registro (substitua pela chamada à API)
-      console.log('Usuário registrado:', { email, password });
+      await register(email, password);
       navigate('/login'); // Redireciona para a tela de login
-    } catch (err) {
-      setError('Erro ao registrar.');
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Erro ao registrar.');
     }
   };
 
