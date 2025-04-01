@@ -1,52 +1,38 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
+/* Estilos globais */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-}
-
-
-:root {
-  font-family: 'Poppins', sans-serif; /* Define a fonte padrão */
+  font-family: 'Poppins', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Estilização de links globais */
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
+/* Estilização de títulos */
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
+/* Estilização de botões */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -58,27 +44,33 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Tema claro */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
 }
 
+/* Spinner de carregamento */
 .spinner {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-left-color: #4f46e5;
@@ -92,4 +84,104 @@ button:focus-visible {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Variáveis CSS para cores base */
+:root {
+  --azul-claro-1: #87CEEB;
+  --azul-claro-2: #E0FFFF;
+  --branco: #ffffff;
+  --azul-medio: #646cff;
+  --cinza-claro: #ddd;
+  --preto-cinza-escuro: #213547;
+}
+
+/* Estilos para a tela de login */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, var(--azul-claro-1), var(--azul-claro-2));
+}
+
+.login-box {
+  
+  padding: 30px;
+  border-radius: 8px;
+  
+  width: 300px;
+}
+
+.login-header {
+  display: flex;
+  justify-content: flex-start; /* Alinha os botões à esquerda */
+  gap: 10px; /* Espaçamento entre os botões */
+  margin-bottom: 20px;
+}
+
+.login-header-link {
+  padding: 10px 15px;
+  color: white; /* Cor do texto branca */
+  text-decoration: none;
+  font-weight: 500;
+  background: none; /* Remove o background */
+  border: none; /* Remove bordas */
+  cursor: pointer; /* Mostra o cursor de clique */
+}
+
+.login-header-link.active {
+  color: var(--azul-medio); /* Cor diferente para o botão ativo */
+  border-bottom: 2px solid var(--azul-medio); /* Linha inferior para o botão ativo */
+}
+
+.input {
+  width: 100%; /* Garante que o input ocupe 100% da largura do contêiner pai */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid var(--branco); /* Define a borda branca */
+  border-radius: 4px;
+  background-color: var(--branco); /* Fundo branco */
+  box-sizing: border-box; /* Inclui padding e borda no cálculo da largura total */
+}
+
+
+.input::placeholder {
+  color: rgba(0, 0, 0, 0.4); /* Cor mais clara para o placeholder */
+  font-style: italic; /* Opcional: deixa o texto em itálico */
+} 
+
+.input:focus {
+  outline: none;
+  border-color: #4f46e5; /* Cor azul ao focar */
+  box-shadow: 0 0 4px rgba(79, 70, 229, 0.5); /* Efeito de foco */
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to right, #4f46e5, #6b5eff); /* Degradê azul */
+  color: var(--branco);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover {
+  background: linear-gradient(to right, #6b5eff, #4f46e5); /* Inverte o degradê ao passar o mouse */
+}
+
+.link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: var(--azul-medio);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
 }

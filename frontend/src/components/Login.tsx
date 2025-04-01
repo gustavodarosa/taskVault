@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../services/api';
+import { login, register } from '../services/api';
+import '../index.css';
 
 const Login: React.FC = () => {
+  const [isRegister, setIsRegister] = useState(false); // Estado para alternar entre login e registro
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setSuccess('');
 
     try {
       const response = await login(email, password);
@@ -21,49 +26,100 @@ const Login: React.FC = () => {
     }
   };
 
+  const handleRegister = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+
+    if (password !== confirmPassword) {
+      setError('As senhas não coincidem.');
+      return;
+    }
+
+    try {
+      await register(email, password);
+      setSuccess('Conta criada com sucesso! Faça login.');
+      setIsRegister(false); // Volta para o formulário de login após o registro
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Erro ao registrar.');
+    }
+  };
+
   return (
-    <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-b from-[#95ece4] to-[#32a1d8]">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
-        <div className="text-center mb-6">
-          <h2 className="text-2xl font-semibold mb-2 text-gray-800">SIGN IN</h2>
-          {error && <div className="text-red-500 mb-4">{error}</div>}
+    <div className="login-container">
+      <div className="login-box">
+        <div className="login-header">
+          <button
+            className={`login-header-link ${!isRegister ? 'active' : ''}`}
+            onClick={() => setIsRegister(false)}
+          >
+            Login
+          </button>
+          <button
+            className={`login-header-link ${isRegister ? 'active' : ''}`}
+            onClick={() => setIsRegister(true)}
+          >
+            Criar Nova Conta
+          </button>
         </div>
-        <form onSubmit={handleLogin} className="space-y-4">
-          <div>
+        {error && <div className="error">{error}</div>}
+        {success && <div className="success">{success}</div>}
+        {isRegister ? (
+          <form onSubmit={handleRegister}>
             <input
               type="email"
-              id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               required
-              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="input"
             />
-          </div>
-          <div>
             <input
               type="password"
-              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Senha"
               required
-              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="input"
             />
-          </div>
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg w-full focus:outline-none focus:shadow-outline"
-          >
-            Entrar
-          </button>
-        </form>
-        <p className="mt-4 text-sm text-gray-600 text-center">
-          Não tem uma conta?{' '}
-          <a href="/register" className="text-blue-500 hover:underline">
-            Registre-se
-          </a>
-        </p>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirmar Senha"
+              required
+              className="input"
+            />
+            <button type="submit" className="button login-button">
+              Registrar
+            </button>
+          </form>
+        ) : (
+          <form onSubmit={handleLogin}>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              required
+              className="input"
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Senha"
+              required
+              className="input"
+            />
+            <button type="submit" className="button login-button">
+              Login
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );

@@ -1,65 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import api from '../services/api';
-
-interface Task {
-  id: number;
-  title: string;
-  description: string;
-  dueDate: string;
-}
+// filepath: c:\Users\gustavo.rosa8\OneDrive - SENAC-SC\taskVault\frontend\src\components\TaskList.tsx
+import React, { useEffect, useState } from "react";
+import api from "../services/api";
+import "../index.css"; // Corrected import for global styles
 
 const TaskList: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [tasks, setTasks] = useState([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchTasks = async () => {
-      setLoading(true);
       try {
-        const response = await api.get('/tasks');
+        const response = await api.get("/tasks");
         setTasks(response.data);
       } catch (err) {
-        setError('Erro ao carregar tarefas.');
-      } finally {
-        setLoading(false);
+        setError("Erro ao carregar tarefas.");
       }
     };
 
     fetchTasks();
   }, []);
 
-  const handleDelete = async (id: number) => {
-    try {
-      await api.delete(`/tasks/${id}`);
-      setTasks(tasks.filter((task) => task.id !== id));
-    } catch (err) {
-      setError('Erro ao excluir tarefa.');
-    }
-  };
-
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold mb-4 text-gray-800">Lista de Tarefas</h1>
-      {loading && (
-  <div className="flex justify-center">
-    <div className="spinner"></div>
-  </div>
-)}
-      {error && <div className="text-red-500">{error}</div>}
-      <ul className="space-y-4">
+    <div className="container">
+      <h2 className="title">Lista de Tarefas</h2>
+      {error && <div className="error">{error}</div>}
+      <ul>
         {tasks.map((task) => (
-          <li className="p-4 border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex justify-between items-center">
-          <div>
-            <strong className="text-gray-800">{task.title}</strong>
-            <p className="text-gray-600">{task.description}</p>
-            <p className="text-sm text-gray-500">Vence em: {task.dueDate}</p>
-          </div>
-          <div className="flex space-x-2">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Editar</button>
-            <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Excluir</button>
-          </div>
-        </li>
+          <li
+            key={task.id}
+            style={{
+              marginBottom: "1rem",
+              padding: "1rem",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+            }}
+          >
+            <strong>{task.title}</strong>
+            <p>{task.description}</p>
+            <p>Vence em: {task.dueDate}</p>
+          </li>
         ))}
       </ul>
     </div>
