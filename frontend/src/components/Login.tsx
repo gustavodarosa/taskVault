@@ -14,51 +14,57 @@ const Login: React.FC = () => {
 
     try {
       const response = await login(email, password);
-      localStorage.setItem('authToken', response.data.token); // Salva o token no localStorage
-      navigate('/tasks'); // Redireciona para a lista de tarefas
+      localStorage.setItem('authToken', response.data.token);
+      navigate('/tasks');
     } catch (err: any) {
       setError(err.response?.data?.message || 'Erro ao fazer login.');
     }
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold mb-4 text-gray-800">Login</h1>
-      {error && <div className="text-red-500 mb-4">{error}</div>}
-      <form onSubmit={handleLogin} className="space-y-4">
-        <div>
-          <label className="block text-gray-700 font-medium">Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
+    <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-b from-[#95ece4] to-[#32a1d8]">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-semibold mb-2 text-gray-800">SIGN IN</h2>
+          {error && <div className="text-red-500 mb-4">{error}</div>}
         </div>
-        <div>
-          <label className="block text-gray-700 font-medium">Senha:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
-        >
-          Entrar
-        </button>
-      </form>
-      <p className="mt-4 text-sm text-gray-600">
-        Não tem uma conta?{' '}
-        <a href="/register" className="text-blue-500 hover:underline">
-          Registre-se
-        </a>
-      </p>
+        <form onSubmit={handleLogin} className="space-y-4">
+          <div>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              required
+              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Senha"
+              required
+              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg w-full focus:outline-none focus:shadow-outline"
+          >
+            Entrar
+          </button>
+        </form>
+        <p className="mt-4 text-sm text-gray-600 text-center">
+          Não tem uma conta?{' '}
+          <a href="/register" className="text-blue-500 hover:underline">
+            Registre-se
+          </a>
+        </p>
+      </div>
     </div>
   );
 };

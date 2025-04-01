@@ -49,21 +49,16 @@ const TaskList: React.FC = () => {
       {error && <div className="text-red-500">{error}</div>}
       <ul className="space-y-4">
         {tasks.map((task) => (
-          <li
-          key={task.id}
-          className="p-4 border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex justify-between items-center"
-        >
+          <li className="p-4 border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex justify-between items-center">
           <div>
             <strong className="text-gray-800">{task.title}</strong>
             <p className="text-gray-600">{task.description}</p>
             <p className="text-sm text-gray-500">Vence em: {task.dueDate}</p>
           </div>
-          <button
-            onClick={() => handleDelete(task.id)}
-            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-all duration-300"
-          >
-            Excluir
-          </button>
+          <div className="flex space-x-2">
+            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Editar</button>
+            <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Excluir</button>
+          </div>
         </li>
         ))}
       </ul>
