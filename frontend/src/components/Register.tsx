@@ -12,16 +12,18 @@ const Register: React.FC = () => {
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-
+  
     if (password !== confirmPassword) {
       setError('As senhas não coincidem.');
       return;
     }
-
+  
     try {
+      console.log('URL da API:', import.meta.env.VITE_API_URL); // Log da URL base
       await register(email, password);
       navigate('/login'); // Redireciona para a tela de login
     } catch (err: any) {
+      console.error('Erro ao registrar:', err.response?.data || err.message);
       setError(err.response?.data?.message || 'Erro ao registrar.');
     }
   };

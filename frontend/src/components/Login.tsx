@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../services/api';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -12,15 +13,11 @@ const Login: React.FC = () => {
     setError('');
 
     try {
-      // Simulação de login (substitua pela chamada à API)
-      if (email === 'user@example.com' && password === 'password') {
-        localStorage.setItem('authToken', 'fake-token'); // Salva o token no localStorage
-        navigate('/tasks'); // Redireciona para a lista de tarefas
-      } else {
-        setError('Credenciais inválidas.');
-      }
-    } catch (err) {
-      setError('Erro ao fazer login.');
+      const response = await login(email, password);
+      localStorage.setItem('authToken', response.data.token); // Salva o token no localStorage
+      navigate('/tasks'); // Redireciona para a lista de tarefas
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Erro ao fazer login.');
     }
   };
 
